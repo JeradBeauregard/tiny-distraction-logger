@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distraction Logger</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-retro">
+  <nav>
+    <button onclick="switchTab('newSession')">New</button>
+    <button onclick="switchTab('currentSession')">Current</button>
+    <button onclick="switchTab('previousSessions')">Previous</button>
+  </nav>
+
+  <section>
+    <label for="theme-select">Theme:</label>
+    <select id="theme-select">
+      <option value="retro">Retro</option>
+      <option value="neumorph">Neumorphism</option>
+      <option value="dark">Dark</option>
+      <option value="glass">Glass</option>
+      <option value="pastel">Pastel</option>
+    </select>
+  </section>
+
+  <section id="newSession" class="tabView active">
+    <h2>New Session</h2>
+    <input type="text" id="sessionName" placeholder="Session Name">
+    <div>
+      <label><input type="radio" name="timerType" value="stopwatch" checked> Stopwatch</label>
+      <label><input type="radio" name="timerType" value="countdown"> Countdown</label>
+    </div>
+    <input type="number" id="countdownMinutes" placeholder="Minutes (for countdown)" disabled>
+    <button onclick="startSession()">Start Session</button>
+  </section>
+
+  <section id="currentSession" class="tabView">
+    <h2>Current Session</h2>
+    <p><strong id="currentSessionName"></strong></p>
+    <p id="timer">00:00</p>
+    <button onclick="pauseResumeTimer()" id="pauseBtn">Pause</button>
+    <button onclick="endSession()">End Session</button>
+    <input type="text" id="distractionInput" placeholder="What distracted you?">
+    <button onclick="logDistraction()">Log Distraction</button>
+    <ul id="distractionList"></ul>
+  </section>
+
+  <section id="previousSessions" class="tabView">
+    <h2>Previous Sessions</h2>
+    <div id="sessionHistory"></div>
+  </section>
+<div id="quotePopup" class="quote-popup"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
